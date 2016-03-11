@@ -1,2 +1,1 @@
-# meteor-girls-websockets-presentation
-The "HTTP vs WebSockets" presentation for Meteor Girls event at Lviv
+http://itspoma.github.io/meteor-girls-websockets-presentation/
