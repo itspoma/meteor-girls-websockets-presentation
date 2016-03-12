@@ -21,8 +21,8 @@
     
     <style>
       .slides img {
-        border: none;
-        box-shadow: none;
+        border: none !important;
+        box-shadow: none !important;
       }
     </style>
   </head>
@@ -37,11 +37,416 @@
         </section>
 
         <section>
-          <h2>Agenda</h2>
+          <section>
+            <h2>The problem areas</h2>
+            <p>
+              <ul>
+                <li class="fragment">real-time (event-driven) apps
+                <li class="fragment">social & online games
+                <li class="fragment">collaborative platforms
+                <li class="fragment">financial applications
+                <li class="fragment">social feeds
+                <li class="fragment">chats
+                <li class="fragment">etc
+              </ul>
+            </p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Hyper Text Transfer Protocol</h2>
+          </section>
+
+          <section>
+            <h2>HTTP model</h2>
+            <p>
+              <img src="http://www.stream-hub.com/images/traditionalhttp.png" width="100%" />
+              <br/>
+              The request/response model
+            </p>
+          </section>
+
+          <section>
+            <h2>HTTP page loading</h2>
+            <p>
+              <img src="http://new.tinygrab.com/7020c0e8b03520f597e7e1f228c5b8dc1ec74667b6.png" width="30%" />
+            </p>
+          </section>
+
+          <section>
+            <h2>HTTP cons</h2>
+            <p>
+              <ul>
+                <li>new TCP connection
+                <li>half-duplex (can only receive or send)
+                <li>limitations
+              </ul>
+            </p>
+          </section>
+
+          <section>
+            <h2>HTTP "Hello World"</h2>
+            <p>
+
+<pre><code class="http" data-trim>GET /7020c0e8b09f4314ceee7c0ebccaff3fe956da1820.png HTTP/1.1
+Host: new.tinygrab.com
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: image/webp,image/*,*/*;q=0.8
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8,ru;q=0.6,uk;q=0.4
+Cookie: __utma=80076562.1; __utmc=80076562; __utmz=80076562
+</code></pre>
+              <br/>
+              Total 456 chars. Req/res overhead?
+            </p>
+          </section>
+
+          <section>
+            <h2>HTTP Polling Architecture</h2>
+            <p>
+              <img src="http://new.tinygrab.com/7020c0e8b0dfc21f69077c4d967a20e3dce9f6a45d.png" width="50%" />
+
+              <br/>
+              Request every n seconds
+            </p>
+          </section>
+
+          <section>
+            <h2>HTTP Polling (js)</h2>
+            <p>
+<pre><code class="js" data-trim>
+setInterval(function() {
+  $.ajax({
+    url: '/server',
+    dataType: 'json',
+    success: function () { ... }
+  })
+}, 30000);
+</code></pre>
+
+              <br/>
+              Request every 30 seconds the "/server" endpoint
+            </p>
+          </section>
+
+          <section>
+            <h2>HTTP Long-Polling Architecture</h2>
+            <p>
+              <img src="http://new.tinygrab.com/7020c0e8b0eb1aa0edba78da6a6f609c0fedb6bfba.png" width="50%" />
+
+              <br/>
+              Request every n seconds \w wait-delay
+            </p>
+          </section>
+
+          <section>
+            <h2>HTTP Streaming</h2>
+            <p>
+              <img src="http://new.tinygrab.com/7020c0e8b0ff64238473a43ed8b254e03316069180.png" width="50%" />
+            </p>
+          </section>
+
+          <section data-background="https://lh3.googleusercontent.com/5ZzyJxWlvA7DkiSIZNceN4gt3eRSiPf1d-1sge6ph_LYLxepZlZ70JEPjemOM1UYIIp-jyDugbYwWSHPyfKoTdi6r68kI-tDn1ScgmrtZzz7Dz-SdKQILNTN3TV2K8rYJPG0Cxc" data-background-size="100%">
+            <h2>&nbsp;</h2>
+          </section>
+
+          
+        </section>
+
+        <section>
+          <section>
+            <h2>WebSockets</h2>
+            <p>
+              <img src="https://lizbedor.files.wordpress.com/2015/05/200-7.gif" width="60%" />
+            </p>
+          </section>
+
+          <section>
+            <img src="http://new.tinygrab.com/7020c0e8b00df2b4875e2cffb9607dffb6f7523ab6.png" width="100%" />
+          </section>
+
+          <section>
+            <img src="http://new.tinygrab.com/7020c0e8b05eb769241d9afe8967c46f3910c67971.png" width="100%" />
+          </section>
+
+          <section>
+            <h2>WebSockets Pros</h2>
+            <p>
+              <ul>
+                <li>B-directional
+                <li>full-duplex
+                <li>single TCP connection
+              </ul>
+
+              <br/>
+
+              <img src="https://lizbedor.files.wordpress.com/2015/05/200-8.gif" width="50%" />
+            </p>
+          </section>
+
+          <section>
+            <h2>WebSockets what is it?</h2>
+            <p>
+              a channel over a single TCP connection
+              <br/>
+              ws://
+            </p>
+          </section>
+
+          <section>
+            <h2>WebSockets how they works?</h2>
+            <p>
+              upgrade http to websocket<br/>
+              send data frames in both directions<br/>
+              end the connection
+            </p>
+          </section>
+
+          <section data-transition="convex">
+            <h2>WebSockets how they works?</h2>
+            <p>
+              <img src="http://new.tinygrab.com/7020c0e8b09f4314ceee7c0ebccaff3fe956da1820.png" />
+            </p>
+          </section>
+
+          <section data-transition="fade">
+            <h2>WebSockets how they works?</h2>
+            <p>
+              <img src="http://new.tinygrab.com/7020c0e8b0b509b03ec2043971d9af46fca141b3c4.png" width="60%" />
+
+              <br/>
+              switching the HTTP protocol to WebSocket
+            </p>
+          </section>
+
+          <section data-transition="fade">
+            <h2>WebSockets how they works?</h2>
+            <p>
+              <img src="http://new.tinygrab.com/7020c0e8b0f77cb3e6f160f384f37ada762537528f.png" width="60%" />
+
+              <br/>
+              each of client & server becomes as peer
+            </p>
+          </section>
+
+          <section data-transition="fade">
+            <h2>WebSockets how they works?</h2>
+            <p>
+              <img src="http://new.tinygrab.com/7020c0e8b041a03b9936dabc6b4b3b50472c10287e.png" width="60%" />
+            </p>
+          </section>
+
+          <section data-transition="fade">
+            <h2>WebSockets how they works?</h2>
+            <p>
+              <img src="http://new.tinygrab.com/7020c0e8b0e344b2b3ce1ec8796c413525fbe5efa0.png" width="60%" />
+            </p>
+          </section>
+
+          <section data-transition="fade">
+            <h2>WebSockets how they works?</h2>
+            <p>
+              <img src="http://new.tinygrab.com/7020c0e8b037335709ae182b07210a601079e7aa2a.png" width="60%" />
+            </p>
+          </section>
+
+          <section data-transition="fade">
+            <h2>WebSockets how they works?</h2>
+            <p>
+              <img src="http://new.tinygrab.com/7020c0e8b000d4b19a168dfb7042c11e762bf2ffd2.png" width="60%" />
+            </p>
+          </section>
+
+          <section data-transition="fade">
+            <h2>WebSockets how they works?</h2>
+            <p>
+              <img src="http://new.tinygrab.com/7020c0e8b0215a473c44d06b223e14879b3ac96d7c.png" width="60%" />
+            </p>
+          </section>
+
+          <section data-transition="fade">
+            <h2>WebSockets how they works?</h2>
+            <p>
+              <img src="http://new.tinygrab.com/7020c0e8b03e8cfc063472c8f27d2a3976ddac9d39.png" width="60%" />
+            </p>
+          </section>
+
+          <section data-transition="fade">
+            <h2>WebSockets how they works?</h2>
+            <p>
+              <img src="http://new.tinygrab.com/7020c0e8b05cf9c7a2c1089178f13f560ded10d925.png" width="60%" />
+            </p>
+          </section>
+
+          <section data-transition="fade">
+            <h2>WebSockets how they works?</h2>
+            <p>
+              <img src="http://new.tinygrab.com/7020c0e8b0f84639dc471e7acb660a5410c09dc51c.png" width="60%" />
+            </p>
+          </section>
+
+          <section data-transition="fade">
+            <h2>WebSockets how they works?</h2>
+            <p>
+              <img src="http://new.tinygrab.com/7020c0e8b0285610fee431081e11f52b18c1cc7244.png" width="60%" />
+            </p>
+          </section>
+
+          <section>
+            <h2>WebSockets "Hello World"</h2>
+            <p>
+              only 2 bytes of overhead<br/>
+              no latency for creation new TCP connection<br/>
+              no polling overhead (will send message when it needed)<br/>
+
+              <br/>
+              <img src="https://lizbedor.files.wordpress.com/2015/05/ioa8msm1.gif" width="60%" />
+            </p>
+          </section>
+
+          <section data-transition="fade">
+            <h2>WebSockets in browsers</h2>
+            <p>
+              <img src="http://new.tinygrab.com/7020c0e8b001680ae4b0d30a038a6a65c23740db47.png" width="100%" />
+
+              <br/>
+              caniuse.com 89.42%
+            </p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>WebSockets example (js)</h2>
+            <p>
+<pre><code class="js" data-trim>
+var ws = new WebSocket('ws://echo.websocket.org');
+
+ws.onopen = function() { ws.send('hi'); }
+
+ws.onmessage = function(event) { console.log('message %s', event.data) }
+
+ws.onclose = function(event) { console.log('closed', event.code) }
+</code></pre>
+            </p>
+          </section>
+
+          <section>
+            <h2>WebSockets example (Docker)</h2>
+            <p>
+Dockerfile:
+<pre><code class="js" data-trim>
+FROM centos:6
+MAINTAINER itspoma &lt;itspoma@gmail.com&gt;
+
+RUN yum clean all \
+ &amp;&amp; yum install -y git curl wget mc
+
+RUN curl --silent --location https://rpm.nodesource.com/setup | bash - \
+ &amp;&amp; yum install -y nodejs \
+ &amp;&amp; npm install -g npm@latest \
+ &amp;&amp; npm install -g inherits
+
+RUN cd /tmp/ && npm install ws \
+ &amp;&amp; wget -O /tmp/server.js http://pastebin.com/raw/cUGe4Bgm
+</code></pre>
+            </p>
+          </section>
+
+          <section>
+            <h2>WebSockets example (run)</h2>
+            <p>
+Shell instructions:
+<pre><code class="shell" data-trim>
+$ wget -O Dockerfile http://pastebin.com/raw/0Xn5uZxc
+
+$ docker rm -f websocket-container
+$ docker rmi -f websocket-image
+
+$ docker build -t websocket-image .
+$ docker run --name=websocket-container -p 4871:8080 -tid websocket-image
+$ docker exec -ti websocket-container bash
+
+vm$ node /tmp/server.js
+</code></pre>
+            </p>
+          </section>
+
+          <section>
+            <h2>WebSockets example (server.js)</h2>
+            <p>
+<pre><code class="js" data-trim>
+var WebSocketServer = require('ws').Server
+  , wss = new WebSocketServer({ port: 8080 });
+
+wss.broadcast = function (data) {
+  wss.clients.forEach(function (client) {
+    client.send(data);
+  });
+};
+
+wss.on('connection', function (ws) {
+  console.log('new connection');
+
+  ws.on('message', function (message) {
+    console.log('received: %s', message);
+    wss.broadcast(message);
+  });
+
+  ws.send('something');
+});
+</code></pre>
+
+<small>http://pastebin.com/raw/cUGe4Bgm</small>
+
+            </p>
+          </section>
+
+          <section>
+            <h2>WebSockets example (client.js)</h2>
+            <p>
+<pre><code class="js" data-trim>
+var ws = new WebSocket('ws://185.69.152.203:4871');
+
+ws.onopen = function() { ws.send('hi'); }
+ws.onmessage = function(event) { console.log('message %s', event.data) }
+ws.onclose = function(event) { console.log('closed', event.code) }
+
+ws.send('welcome');
+</code></pre>
+
+<small><a href="http://jsfiddle.net/7hvph2ob/4/" target="_blank">http://jsfiddle.net/7hvph2ob/4/</a></small>
+            </p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>WebSockets vs HTTP</h2>
+            <p>
+              <img src="http://orm-chimera-prod.s3.amazonaws.com/1230000000545/images/hpbn_1702.png" />
+            </p>
+          </section>
+        </section>
+
+        <section>
+          <h2>WebSockets in Meteor.js</h2>
           <p>
-            aaa
-            http://westchesterhomeowner.com/wp-content/uploads/2012/05/outlet.jpg
+            websocket-based DDP (Distributed Data Protocol)
+            <br/>
+            <br/>
+
+            to fetch structured data from a server,<br/>
+            deliver live updates as data changes
           </p>
+        </section>
+
+        <section data-background="https://lizbedor.files.wordpress.com/2015/05/thanks.gif" data-background-size="60%">
+          <h2 style="color:white; margin-top:-35%;"><b>Questions?</b></h2>
         </section>
 
       </div>
@@ -51,7 +456,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.2.0/js/reveal.min.js"></script>
     <script>
       (function() {
-      	var CDN = 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.2.0';
+        var CDN = 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.2.0';
       
         Reveal.initialize({
           controls: true,
