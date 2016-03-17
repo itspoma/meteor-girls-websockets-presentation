@@ -391,6 +391,7 @@ $ docker run --name=websocket-container -p 4871:8080 -tid websocket-image
 $ docker exec -ti websocket-container bash
 
 vm$ node /tmp/server.js
+vm$ nohup node /tmp/server.js >/dev/null 2>&1 &
 </code></pre>
             </p>
           </section>
